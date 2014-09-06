@@ -67,25 +67,40 @@ public:
     using SizeType  =   typename Container::size_type;
     using CIter     =   typename Container::const_iterator;
 
+    /**
+     * @brief default Ctor
+     */
     explicit Box():
         vec(construct_and_sort())
     {}
 
+    /**
+     * @brief operator []
+     */
     const Tile& operator [](SizeType index) const
     {
         return vec[index];
     }
 
+    /**
+     * @brief begin
+     */
     CIter begin()const
     {
         return vec.cbegin();
     }
 
+    /**
+     * @brief end
+     */
     CIter end()const
     {
         return vec.cend();
     }
 
+    /**
+     * @brief print
+     */
     std::ostream& print()const
     {
         std::size_t count = 0;
@@ -104,9 +119,14 @@ public:
 private:
     Container vec;
 
+    /**
+     * @brief construct_and_sort
+     * @return  a vector storing all tiles inserted.
+     */
     Container construct_and_sort()
     {
         Container ret{};
+
         //! insert all tiles
         for(std::size_t four = 0; four != 4; ++four)
         {
@@ -130,7 +150,7 @@ private:
 }//namespace
 #endif // TILES_HPP
 
-//! @test   for tile
+//! @test   for Tile
 //!
 //#include <iostream>
 //#include <tiles.hpp>
@@ -140,5 +160,24 @@ private:
 //    mj::Tile tile{"dot", 9};
 //    std::cout << tile;
 
+//    return 0;
+//}
+
+//! @test   for Box
+//!
+//#include <iostream>
+//#include <tiles.hpp>
+
+//int main()
+//{
+//    mj::Box box{};
+
+//    std::cout << box[9].type << std::endl;
+//    std::cout << box[0].title() << std::endl;
+
+//    for(const auto& elem    :   box)
+//        std::cout << elem.title() << " ";
+
+//    std::cout << "\nexit normally\n";
 //    return 0;
 //}

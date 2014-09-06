@@ -14,32 +14,36 @@
 #include <algorithm>
 
 namespace mj {
-namespace data
-{
-    const std::vector<std::string> honor
-    {
-        "Eas", "Sou","Wes","Nor", "Zho", "Fah", "Bai"
-    };
 
-    const std::vector<std::string> suit
-    {
-        "dot", "bam", "cha"
-    };
+namespace data{
+const std::vector<std::string> honor
+{
+    "Eas", "Sou","Wes","Nor", "Zho", "Fah", "Bai"
+};
+
+const std::vector<std::string> suit
+{
+    "dot", "bam", "cha"
+};
+
+inline bool
+is_honor(const std::string& pile_type)
+{
+    auto iter_found = std::find(honor.begin(), honor.end(), pile_type);
+    return iter_found != honor.end();
 }
+}//namespace data
 
 /**
  * @brief The tile struct
  */
 struct Tile
 {
+    using SizeType  =   std::size_t;
+
     std::string title() const
     {
-        //! check if it's an honor
-        bool is_honor =
-                data::honor.end()   !=
-                    std::find(data::honor.begin(), data::honor.end(), type);
-
-        return is_honor?    type    :   type + std::to_string(value);
+        return  data::is_honor(type)?  type  :  type + std::to_string(value);
     }
 
     std::ostream& print() const
@@ -49,7 +53,7 @@ struct Tile
     }
 
     std::string type;
-    std::size_t value;
+    SizeType value;
 };
 
 /**
@@ -64,10 +68,27 @@ operator <<(std::ostream& os, const Tile& tl)
     return os;
 }
 
+/**
+ * @brief operator <
+ * @param lhs
+ * @param rhs
+ */
 inline bool
 operator <(const Tile& lhs, const Tile& rhs)
 {
     return lhs.title() < rhs.title();
+}
+
+/**
+ * @brief operator +
+ * @param lhs
+ * @param rhs
+ */
+inline Tile
+operator +(const Tile& lhs, Tile::SizeType rhs)
+{
+    bool is_honor = data::is_honor(lhs.type);
+    return is_honor?    Tile{lhs.type, 100}     :   Tile{lhs.type,  lhs.value + rhs};
 }
 
 /**

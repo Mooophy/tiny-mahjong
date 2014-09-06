@@ -63,6 +63,9 @@ private:
     SizeType curr;
     OrderType sequence;
 
+    /**
+     * @brief generate_sequece
+     */
     OrderType generate_sequece()const
     {
         OrderType seq{};
@@ -73,7 +76,6 @@ private:
 
         return seq;
     }
-
 };
 }//namespace
 #endif // GAME_MASTER_HPP

@@ -30,6 +30,9 @@ T random(T min , T max)
  * @brief make_random
  * @param first
  * @param last
+ *
+ * @note    based on Fisher–Yates shuffle.
+ * @complx  O(n)
  */
 template<typename Iter>
 void make_random(Iter first, Iter last)

@@ -7,6 +7,7 @@ int main()
 {
     mj::GameMaster gm;
 
+    std::cout << "Pls enter:\n";
     for(std::string buff; std::cin >> buff;/* */)
         gm.license().print() << std::endl;
 

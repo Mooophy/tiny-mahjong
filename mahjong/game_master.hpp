@@ -17,25 +17,25 @@ public:
         box{},curr{0}
     {}
 
-    void shuffle()
-    {
+//    void shuffle()
+//    {
 
-    }
+//    }
 
-    const Tile& license()
-    {
+//    const Tile& license()
+//    {
 
-    }
+//    }
 
 private:
     const Box box;
     SizeType curr;
     OrderType sequence;
 
-    OrderType generate_sequece()const
-    {
+//    OrderType generate_sequece()const
+//    {
 
-    }
+//    }
 
 };
 }//namespace

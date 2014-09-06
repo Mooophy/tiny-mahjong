@@ -8,5 +8,6 @@ SOURCES += main.cpp
 
 HEADERS += \
     game_master.hpp \
-    tiles.hpp
+    tiles.hpp \
+    random_sequence.hpp
 

@@ -3,8 +3,9 @@
 
 int main()
 {
-    mj::Tile tile{"dot", 9};
-    std::cout << tile;
+    mj::Box box{};
+
+    box.print() << std::endl;
 
     return 0;
 }

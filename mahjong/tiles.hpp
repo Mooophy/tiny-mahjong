@@ -27,7 +27,12 @@ struct Tile
 {
     std::string title() const
     {
-        return type + std::to_string(value);
+        //! check if it's an honor
+        bool is_honor =
+                data::honor.end()   !=
+                    std::find(data::honor.begin(), data::honor.end(), type);
+
+        return is_honor?    type    :   type + std::to_string(value);
     }
 
     std::string type;
@@ -63,7 +68,7 @@ public:
     explicit Box():
         vec{}
     {
-        insert_all_tiles();
+        insert_and_sort();
     }
 
     std::ostream& print()const
@@ -84,7 +89,7 @@ public:
 private:
     Container vec;
 
-    void insert_all_tiles()
+    void insert_and_sort()
     {
         for(std::size_t four = 0; four != 4; ++four)
         {

@@ -6,3 +6,7 @@ CONFIG += C++11
 
 SOURCES += main.cpp
 
+HEADERS += \
+    game_master.hpp \
+    tiles.hpp
+

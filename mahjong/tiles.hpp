@@ -63,12 +63,27 @@ operator <(const Tile& lhs, const Tile& rhs)
 class Box
 {
 public:
-    using Container = std::vector<mj::Tile>;
+    using Container =   std::vector<mj::Tile>;
+    using SizeType  =   typename Container::size_type;
+    using CIter     =   typename Container::const_iterator;
 
     explicit Box():
-        vec{}
+        vec(construct_and_sort())
+    {}
+
+    const Tile& operator [](SizeType index) const
     {
-        insert_and_sort();
+        return vec[index];
+    }
+
+    CIter begin()const
+    {
+        return vec.cbegin();
+    }
+
+    CIter end()const
+    {
+        return vec.cend();
     }
 
     std::ostream& print()const
@@ -89,19 +104,24 @@ public:
 private:
     Container vec;
 
-    void insert_and_sort()
+    Container construct_and_sort()
     {
+        Container ret{};
+        //! insert all tiles
         for(std::size_t four = 0; four != 4; ++four)
         {
             for(const auto& elem :  data::suit)
                 for(std::size_t val = 0; val != 9; ++val)
-                    vec.push_back({elem, val + 1});
+                    ret.push_back({elem, val + 1});
 
             for(const auto& elem :  data::honor)
-                vec.push_back({elem, 0});
+                ret.push_back({elem, 0});
         }
 
-        std::sort(vec.begin(), vec.end());
+        //! sort
+        std::sort(ret.begin(), ret.end());
+
+        return ret;
     }
 };
 

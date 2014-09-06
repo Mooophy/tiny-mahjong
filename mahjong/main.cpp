@@ -5,7 +5,8 @@ int main()
 {
     mj::Box box{};
 
-    box.print() << std::endl;
+    for(const auto& elem    :   box)
+        std::cout << elem.title() << " ";
 
     return 0;
 }

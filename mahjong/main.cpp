@@ -5,11 +5,10 @@
 
 int main()
 {
-    std::vector<int> v {1,2,3,4,5};
-    mj::make_random(v.begin(), v.end());
+    mj::GameMaster gm;
 
-    for(auto elem : v)
-        std::cout << elem << " ";
+    for(std::string buff; std::cin >> buff;/* */)
+        gm.license().print() << std::endl;
 
     std::cout << "\nexit normally\n";
     return 0;

@@ -1,3 +1,10 @@
+/***************************************************************************
+ *  @file       tiles.hpp
+ *  @author     Yue Wang
+ *  @date       6  Sep 2014
+ *  @version
+ *  @remark     implemented for tiny-mahjong
+ ***************************************************************************/
 #ifndef TILES_HPP
 #define TILES_HPP
 
@@ -33,6 +40,12 @@ struct Tile
                     std::find(data::honor.begin(), data::honor.end(), type);
 
         return is_honor?    type    :   type + std::to_string(value);
+    }
+
+    std::ostream& print() const
+    {
+        std::cout << title();
+        return std::cout;
     }
 
     std::string type;
@@ -114,6 +127,15 @@ public:
         std::cout << std::endl << vec.size() << " tiles in all";
 
         return std::cout;
+    }
+
+    /**
+     * @brief size
+     * @return
+     */
+    SizeType size()const
+    {
+        return vec.size();
     }
 
 private:

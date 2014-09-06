@@ -1,3 +1,10 @@
+/***************************************************************************
+ *  @file       random_sequence.hpp
+ *  @author     Yue Wang
+ *  @date       6  Sep 2014
+ *  @version
+ *  @remark     implemented for tiny-mahjong
+ ***************************************************************************/
 #ifndef RANDOM_SEQUENCE_HPP
 #define RANDOM_SEQUENCE_HPP
 

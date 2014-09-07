@@ -23,18 +23,6 @@ inline bool find_1_1_1(Iter first)
     return *first   ==  *(first + 1)    ==  *(first + 2);
 }
 
-//template<typename Iter>
-//inline bool find_1_2_3(Iter first, Iter last)
-//{
-//    using ValueType =   typename std::iterator_traits<Iter>::value_type;
-//    std::set<ValueType> set {first, last};
-
-//    auto second = std::find(set.begin(), set.end(), *first + 1);
-//    auto third  = std::find(set.begin(), set.end(), *first + 2);
-
-
-//}
-
 template<typename Iter>
 inline bool find_1_1(Iter first)
 {

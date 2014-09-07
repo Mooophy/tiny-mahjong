@@ -10,5 +10,6 @@ HEADERS += \
     random_sequence.hpp \
     tile.h \
     box.h \
-    game_master.h
+    game_master.h \
+    win.hpp
 

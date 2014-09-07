@@ -25,9 +25,10 @@ const std::vector<std::string> suit
 class Tile
 {
     friend Tile operator +(const Tile& lhs, std::size_t rhs);
+    friend bool operator==(const Tile& lhs, const Tile& rhs);
 public:
     using ValueType  =   std::size_t;
-    Tile(bool cnt, const std::string& tp, ValueType val):
+    Tile(bool cnt, const std::string& tp, ValueType val = 0):
         countable{cnt},type{tp},value{val}
     {}
 
@@ -58,6 +59,14 @@ operator <<(std::ostream& os, const Tile& tl)
 {
     os << tl.title();
     return os;
+}
+
+inline bool
+operator ==(const Tile& lhs, const Tile& rhs)
+{
+    return (lhs.countable    ==  rhs.countable)
+            &&  (lhs.type    ==  rhs.type)
+            &&  (lhs.value   ==  rhs.value);
 }
 
 /**

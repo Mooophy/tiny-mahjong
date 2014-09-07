@@ -1,16 +1,17 @@
 #include <iostream>
-#include "tile.h"
-
+#include <box.h>
 
 int main()
 {
-    mj::Tile tile{true, "dot", 2};
+    mj::Box box{};
 
-    tile.print();
-    std::cout << tile + 1 << std::endl;
+    std::cout << box[0].title() << std::endl;
+    for(const auto& elem    :   box)
+        elem.print() << " ";
 
+    box.print();
 
-
+    std::cout << "exit normally\n";
     return 0;
 }
 

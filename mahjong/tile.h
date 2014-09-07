@@ -3,9 +3,25 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 namespace mj {
 
+namespace data{
+const std::vector<std::string> honor
+{
+    "Eas", "Sou","Wes","Nor", "Zho", "Fah", "Bai"
+};
+
+const std::vector<std::string> suit
+{
+    "dot", "bam", "cha"
+};
+}//namespace data
+
+/**
+ * @brief The Tile class
+ */
 class Tile
 {
     friend Tile operator +(const Tile& lhs, std::size_t rhs);
@@ -71,3 +87,22 @@ operator +(const Tile& lhs, Tile::ValueType rhs)
 
 }//namespace
 #endif // TILE_H
+
+//! @test
+//!
+//#include <iostream>
+//#include "tile.h"
+
+//int main()
+//{
+//    mj::Tile tile{true, "dot", 2};
+//    tile.print();
+//    std::cout << tile + 1 << std::endl;
+
+//    std::cout << "exit normally\n";
+//    return 0;
+//}
+//! @output
+//!
+//dot2dot3
+//exit normally

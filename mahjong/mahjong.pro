@@ -8,5 +8,6 @@ SOURCES += main.cpp
 
 HEADERS += \
     random_sequence.hpp \
-    tile.h
+    tile.h \
+    box.h
 

@@ -8,6 +8,10 @@
 #include "tile.h"
 
 namespace mj {
+
+/**
+ * @brief a box of tiles
+ */
 class Box
 {
 public:

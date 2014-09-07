@@ -1,15 +1,10 @@
 #include <iostream>
-#include <box.h>
-
+#include "game_master.h"
 int main()
 {
-    mj::Box box{};
-
-    std::cout << box[0].title() << std::endl;
-    for(const auto& elem    :   box)
-        elem.print() << " ";
-
-    box.print();
+    mj::GameMaster gm;
+    for(auto i = 0; i != 136; ++i)
+        gm.license().print() << "\n";
 
     std::cout << "exit normally\n";
     return 0;

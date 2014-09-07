@@ -1,17 +1,16 @@
 #include <iostream>
-#include <tiles.hpp>
-#include "game_master.hpp"
-#include "random_sequence.hpp"
+#include "tile.h"
+
 
 int main()
 {
-    mj::GameMaster gm;
+    mj::Tile tile{true, "dot", 2};
 
-    std::cout << "Pls enter:\n";
-    for(std::string buff; std::cin >> buff;/* */)
-        gm.license().print() << std::endl;
+    tile.print();
+    std::cout << tile + 1 << std::endl;
 
-    std::cout << "\nexit normally\n";
+
+
     return 0;
 }
 

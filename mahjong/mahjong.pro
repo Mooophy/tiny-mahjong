@@ -7,8 +7,6 @@ CONFIG += C++11
 SOURCES += main.cpp
 
 HEADERS += \
-    game_master.hpp \
-    tiles.hpp \
     random_sequence.hpp \
-    hu.hpp
+    tile.h
 

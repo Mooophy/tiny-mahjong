@@ -18,7 +18,7 @@ public:
         in_hand{}
     {}
 
-    void draw(const tile& tl)
+    void draw(const mj::Tile& tl)
     {
         in_hand.push_back(tl);
 

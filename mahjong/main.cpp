@@ -1,39 +1,23 @@
 #include <iostream>
-#include "game_master.h"
-#include "win.hpp"
+#include <tile.h>
+#include "in_hand.hpp"
 
 int main()
 {
-    //! init and sort
-    mj::GameMaster gm;
-    std::vector<mj::Tile> tiles{
-        {false, "Bai"},
-        {false, "Bai"},
-        {false, "Zho"},
-        {false, "Zho"},
-        {false, "Zho"},
-        {true , "dot", 1},
-        {true , "dot", 2},
-        {true , "dot", 3},
-        {true , "bam", 5},
-        {true , "bam", 6},
-        {true , "bam", 7},
-        {true , "bam", 2},
-        {true , "bam", 3},
-        {true , "bam", 4},
-    };
-    std::sort(tiles.begin(), tiles.end());
+    mj::InHand<mj::Tile> in_hand;
+    in_hand.push_back({true , "bam", 4});
+    in_hand.push_back({true , "bam", 3});
+    in_hand.push_back({true , "bam", 2});
+    in_hand.push_back({true , "bam", 1});
+    in_hand.push_back({true , "bam", 6});
+    in_hand.push_back({true , "bam", 9});
 
-    //! print
-    for(const auto& elem : tiles)
-        elem.print()<< "\n";
+    in_hand.draw({true , "dot", 2});
 
-    //! check if win
-    if(mj::check_if_win(tiles.begin(),tiles.end()))
-        std::cout << "you win\n";
-    else
-        std::cout << "not won yet\n";
+    for(const auto& elem : in_hand)
+        elem.print()<<std::endl;
 
+    in_hand.bring_out(3).print();
 
     std::cout << "\nexit normally\n";
     return 0;

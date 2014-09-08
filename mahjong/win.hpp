@@ -7,6 +7,43 @@
 #include <iterator>
 #include <algorithm>
 
+namespace std {
+
+//! @typedef
+template<typename Iter>
+using DifferenceType = typename std::iterator_traits<Iter>::difference_type;
+
+/**
+ * @brief operator +
+ * @param lhs   iterator
+ * @param rhs   offset
+ * @return iterator
+ *
+ * extend std for simplicity.
+ */
+template<typename Iter>
+Iter operator +(Iter lhs, DifferenceType<Iter> rhs )
+{
+    std::advance(lhs,rhs);
+    return lhs;
+}
+
+/**
+ * @brief operator +
+ * @param lhs   offset
+ * @param rhs   iterator
+ * @return  iterator
+ *
+ * extend std for simplicity.
+ */
+template<typename Iter>
+Iter operator +(DifferenceType<Iter> lhs,Iter rhs)
+{
+    return rhs + lhs;
+}
+
+}//namespace std
+
 namespace mj {
 
 /**
@@ -19,12 +56,7 @@ namespace mj {
 template<typename Iter>
 inline bool find_1_1_1(Iter first)
 {
-    auto second = first;
-    std::advance(second, 1);
-    auto third  = first;
-    std::advance(third, 2);
-
-    return *first   ==  *second    &&      *first  ==  *third;
+    return *first   ==  *(first + 1)    &&      *first  ==  *(first + 2);
 }
 
 /**
@@ -37,10 +69,7 @@ inline bool find_1_1_1(Iter first)
 template<typename Iter>
 inline bool find_1_1(Iter first)
 {
-    auto second = first;
-    std::advance(second, 1);
-
-    return *first   ==  *second;
+    return *first   ==  *(first + 1);
 }
 
 
@@ -49,6 +78,7 @@ inline bool find_1_1(Iter first)
  * @param first
  * @param last
  * @note    sort the sequence first before calling this function
+ * @complx  O(3^n)  quit slow, but n == 4 in this case.
  */
 template<typename Iter>
 bool check_if_win(Iter first, Iter last)
@@ -60,13 +90,7 @@ bool check_if_win(Iter first, Iter last)
         return true;
 
     //! case 1  :   1 1 1
-    bool case_1 = find_1_1_1(first);
-    if(case_1)
-    {
-        auto next = first;
-        std::advance(next, 3);
-        case_1 = check_if_win(next, last);
-    }
+    bool case_1 = find_1_1_1(first)     &&  check_if_win(first + 3, last);  //recur
 
     //! case 2  :   1 2 3
     using ValueType =   typename std::iterator_traits<Iter>::value_type;
@@ -81,18 +105,14 @@ bool check_if_win(Iter first, Iter last)
             list.erase(list.begin());
             list.erase(second);
             list.erase(third);
-            case_2 = check_if_win(list.begin(), list.end());
+            case_2 = check_if_win(list.begin(), list.end());                //recur
         }
     }
 
     //! case 3  :   1 1
     bool case_3 {size % 3    &&  find_1_1(first)};
     if(case_3)
-    {
-        auto next = first;
-        std::advance(next, 2);
-        case_3  =   check_if_win(next, last);
-    }
+        case_3  =   check_if_win(first + 2, last);                          //recur
 
     return case_1   ||  case_2  ||  case_3;
 }

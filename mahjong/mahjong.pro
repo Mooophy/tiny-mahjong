@@ -4,12 +4,15 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG += C++11
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    player.cpp
 
 HEADERS += \
     random_sequence.hpp \
     tile.h \
     box.h \
     game_master.h \
-    win.hpp
+    win.hpp \
+    player.h \
+    in_hand.hpp
 

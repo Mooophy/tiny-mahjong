@@ -3,11 +3,16 @@
 
 #include <vector>
 #include <algorithm>
+#include "win.hpp"
 
 namespace mj {
 
+const std::size_t FULL_SIZE = 14;
+
 /**
  * @brief The InHand class
+ *
+ * use [13] for the 14th pile always
  */
 template<typename ValueType>
 class InHand : public std::vector<ValueType>
@@ -18,6 +23,8 @@ public:
     /**
      * @brief push_back
      * @param added
+     *
+     * only used for first 13 tiles (14 tiles for maker)
      */
     void push_back(const ValueType& added)
     {
@@ -44,6 +51,17 @@ public:
     {
         std::swap(Base::back(), (*this)[index]);
         return Base::back();
+    }
+
+    /**
+     * @brief did_win
+     * @return
+     */
+    bool did_win()const
+    {
+        if(Base::size() !=  mj::FULL_SIZE)
+            return false;
+        return mj::check_if_win(Base::begin(), Base::end());
     }
 };
 

@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "tile.h"
+#include "in_hand.hpp"
 #include <vector>
 
 namespace mj{
@@ -12,8 +13,6 @@ namespace mj{
 class player
 {
 public:
-    using Container =   std::vector<mj::Tile>;
-
     player():
         in_hand{}
     {}
@@ -21,11 +20,9 @@ public:
     void draw(const mj::Tile& tl)
     {
         in_hand.push_back(tl);
-
-        //  switch to develop in_hand.hpp.
     }
 protected:
-    Container in_hand;
+    mj::InHand in_hand;
 
 private:
 

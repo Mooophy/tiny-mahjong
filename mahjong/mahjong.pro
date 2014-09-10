@@ -10,9 +10,5 @@ SOURCES += main.cpp \
 HEADERS += \
     random_sequence.hpp \
     tile.h \
-    box.h \
-    game_master.h \
-    win.hpp \
-    player.h \
-    in_hand.hpp
+    win.hpp
 

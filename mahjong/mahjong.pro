@@ -9,5 +9,6 @@ SOURCES += main.cpp
 HEADERS += \
     random_sequence.hpp \
     tile.h \
-    win.hpp
+    win.hpp \
+    alias.hpp
 

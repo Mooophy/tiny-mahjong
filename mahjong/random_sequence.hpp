@@ -44,6 +44,35 @@ void make_random(Iter first, Iter last)
     }
 }
 
+/**
+ * @brief generate_random_sequence
+ * @param size
+ * @param first_value
+ * @param step
+ *
+ * for each round of a game
+ */
+template<typename Container>
+inline Container
+generate_random_sequence(typename Container::size_type size = 136,
+                         const typename Container::value_type& first_value = 0,
+                         const typename Container::value_type& step = 1)
+{
+    //! construct the sequence
+    Container sequence(size);
+    auto value = first_value;
+    for(auto& elem : sequence)
+    {
+        elem = value;
+        value += step;
+    }
+
+    //! make it random
+    mj::make_random(sequence.begin(), sequence.end());
+
+    return sequence;
+}
+
 }//namespace
 #endif // RANDOM_SEQUENCE_HPP
 
@@ -68,5 +97,34 @@ void make_random(Iter first, Iter last)
 //! @output
 //!
 //4 5 2 3 1
+//exit normally
+
+//! @test   generate_random_sequence
+//!
+//#include <iostream>
+//#include <random_sequence.hpp>
+
+//int main()
+//{
+//    using Container = std::vector<std::size_t>;
+//    auto sequence = mj::generate_random_sequence<Container>(10);
+
+//    for(auto i : sequence)
+//        std::cout << i << "\n";
+
+//    return 0;
+//}
+//! @output
+//!
+//3
+//6
+//4
+//9
+//2
+//5
+//8
+//7
+//1
+//0
 //exit normally
 

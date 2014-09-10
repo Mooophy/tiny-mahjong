@@ -1,7 +1,6 @@
 #ifndef WIN_HPP
 #define WIN_HPP
 
-#include "tile.h"
 #include <set>
 #include <list>
 #include <iterator>
@@ -123,13 +122,12 @@ bool check_if_win(Iter first, Iter last)
 //! @test
 //!
 //#include <iostream>
-//#include "game_master.h"
 //#include "win.hpp"
+//#include "tile.h"
 
 //int main()
 //{
 //    //! init and sort
-//    mj::GameMaster gm;
 //    std::vector<mj::Tile> tiles{
 //        {false, "Bai"},
 //        {false, "Bai"},
@@ -161,6 +159,7 @@ bool check_if_win(Iter first, Iter last)
 //    std::cout << "\nexit normally\n";
 //    return 0;
 //}
+
 //! @output
 //!
 //Bai

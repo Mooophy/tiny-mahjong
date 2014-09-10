@@ -4,8 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG += C++11
 
-SOURCES += main.cpp \
-    player.cpp
+SOURCES += main.cpp
 
 HEADERS += \
     random_sequence.hpp \

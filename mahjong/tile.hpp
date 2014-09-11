@@ -1,9 +1,10 @@
-#ifndef TILE_H
-#define TILE_H
+#ifndef TILE_HPP
+#define TILE_HPP
 
 #include <string>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 namespace mj {
 
@@ -94,8 +95,30 @@ operator +(const Tile& lhs, Tile::ValueType rhs)
                 Tile{lhs.countable, lhs.type, 100};
 }
 
+template<typename Container>
+inline Container build_box()
+{
+    Container box{};
+    //! insert all tiles
+    for(auto four = 0; four != 4; ++four)
+    {
+        for(const auto& elem :  data::suit)
+            for(unsigned val = 0; val != 9; ++val)
+                box.push_back({true, elem, val + 1});
+
+        for(const auto& elem :  data::honor)
+            box.push_back({false, elem, 0});
+    }
+
+    //! sort
+    std::sort(box.begin(), box.end());
+
+    return box;
+
+}
+
 }//namespace
-#endif // TILE_H
+#endif // TILE_HPP
 
 //! @test
 //!
@@ -115,3 +138,18 @@ operator +(const Tile& lhs, Tile::ValueType rhs)
 //!
 //dot2dot3
 //exit normally
+
+//! @test
+//!
+//#include <iostream>
+//#include <tile.hpp>
+
+//int main()
+//{
+//    auto box = mj::build_box<std::vector<mj::Tile>>();
+//    for(const auto& tile : box)
+//        tile.print() << "\n";
+
+//    std::cout << "exit normally\n";
+//    return 0;
+//}

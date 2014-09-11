@@ -10,5 +10,6 @@ HEADERS += \
     random_sequence.hpp \
     win.hpp \
     alias.hpp \
-    tile.hpp
+    tile.hpp \
+    player.hpp
 

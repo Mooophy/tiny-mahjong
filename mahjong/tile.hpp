@@ -29,6 +29,11 @@ class Tile
     friend bool operator==(const Tile& lhs, const Tile& rhs);
 public:
     using ValueType  =   std::size_t;
+
+    Tile():
+        countable{false},type{"zzz"},value{99}
+    {}
+
     Tile(bool cnt, const std::string& tp, ValueType val = 0):
         countable{cnt},type{tp},value{val}
     {}

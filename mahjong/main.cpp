@@ -1,18 +1,37 @@
 #include <iostream>
+#include "player.hpp"
 #include "tile.hpp"
-#include "random_sequence.hpp"
-#include <deque>
+#include <memory>
 
 int main()
 {
-    auto box = mj::build_box<std::vector<mj::Tile>>();
-    auto sequence = mj::generate_random_sequence<std::deque<unsigned>>();
+    //! init an npc
+    using Vec = std::vector<mj::Tile>;
+    Vec tiles{
+        {false, "Bai"},
+        {false, "Bai"},
+        {false, "Zho"},
+        {false, "Zho"},
+        {false, "Zho"},
+        {true , "dot", 1},
+        {true , "dot", 2},
+        {true , "dot", 3},
+        {true , "bam", 5},
+        {true , "bam", 6},
+        {true , "bam", 7},
+        {true , "bam", 2},
+        {true , "bam", 3},
+    };
+    std::shared_ptr<mj::Player<Vec>> npc
+            = std::make_shared<mj::Npc<Vec>>(std::move(tiles));
+    std::cout << (npc->win()?    "you win!\n"   :   "not win yet..\n");
 
-    for(unsigned u = 0; u != box.size(); ++u)
-    {
-        box[sequence.back()].print() << " u=" << u << "\n";
-        sequence.pop_back();
-    }
+    //! draw
+    npc->draw({true , "bam", 1});
+    std::cout << (npc->win()?    "you win!\n"   :   "not win yet..\n");
+
+    //! bring out
+    npc->bring_out().print() << std::endl;
 
     std::cout << "exit normally\n";
     return 0;

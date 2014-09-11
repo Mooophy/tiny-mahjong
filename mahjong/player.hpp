@@ -125,6 +125,8 @@ private:
      */
     SizeType interact()const
     {
+        for(unsigned u = 0; u != 14; ++u)
+            std::cout << u << " : [" << Base::in_hand[u] << "]  ";
 
         std::cout << "\nwhich to bring out? type 0 to 13\n";
         SizeType input;

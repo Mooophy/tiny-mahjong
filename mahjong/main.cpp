@@ -1,8 +1,8 @@
 #include <iostream>
-#include "player.hpp"
-#include "tile.hpp"
 #include <memory>
 #include <game.h>
+#include "player.hpp"
+#include "tile.hpp"
 
 int main()
 {

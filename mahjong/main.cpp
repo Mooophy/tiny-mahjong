@@ -5,7 +5,7 @@
 
 int main()
 {
-    //! init an npc
+    //! init a human
     using Vec = std::vector<mj::Tile>;
     Vec tiles{
         {false, "Bai"},
@@ -22,16 +22,16 @@ int main()
         {true , "bam", 2},
         {true , "bam", 3},
     };
-    std::shared_ptr<mj::Player<Vec>> npc
-            = std::make_shared<mj::Npc<Vec>>(std::move(tiles));
-    std::cout << (npc->win()?    "you win!\n"   :   "not win yet..\n");
+    std::shared_ptr<mj::Player<Vec>> player
+            = std::make_shared<mj::Human<Vec>>(std::move(tiles));
+    std::cout << (player->win()?    "you win!\n"   :   "not win yet..\n");
 
     //! draw
-    npc->draw({true , "bam", 1});
-    std::cout << (npc->win()?    "you win!\n"   :   "not win yet..\n");
+    player->draw({true , "bam", 1});
+    std::cout << (player->win()?    "you win!\n"   :   "not win yet..\n");
 
     //! bring out
-    npc->bring_out().print() << std::endl;
+    player->bring_out().print() << std::endl;
 
     std::cout << "exit normally\n";
     return 0;

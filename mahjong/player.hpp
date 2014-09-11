@@ -19,6 +19,10 @@ public:
     using ValueType =   typename Container::value_type;
     using SizeType  =   typename Container::size_type;
 
+    Player():
+        in_hand{}
+    {}
+
     Player(const Container& c):
         in_hand{c}
     {}

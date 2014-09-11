@@ -1,3 +1,64 @@
 #include "game.h"
 
+/**
+ * @brief mj::Game::init_in_hand_for_all_players
+ */
+void mj::Game::init_in_hand_for_all_players()
+{
+    //! 13 tiles each player
+    for(unsigned u = 0; u != 13; ++u)
+        for(auto& player : all_players)
+        {
+            const auto& tile = box[sequence.back()];
+            player->draw(tile);
+            sequence.pop_back();
+        }
 
+    //! the 14th tile for maker
+    //! i.e.human player in this version
+    const auto& tile_for_maker = box[sequence.back()];
+    all_players[0]->draw(tile_for_maker);
+    sequence.pop_back();
+}
+
+/**
+ * @brief mj::Game::allocate_all_players
+ */
+void mj::Game::allocate_all_players(std::size_t size)
+{
+    all_players[0] = std::make_shared<mj::Human<Vector>>();
+
+    for(unsigned sz = 1; sz != size; ++sz)
+        all_players[sz] = std::make_shared<mj::Npc<Vector>>();
+}
+
+void mj::Game::play()
+{
+    //! check if maker won already:
+    if(all_players[0]->win())
+        std::cout << "Maker win!\n";
+
+    //! game start
+    for(bool end{false}; end != true   &&  !sequence.empty(); sequence.pop_back())
+        for(auto curr = all_players.begin(); curr != all_players.end(); ++curr)
+        {
+            //! draw
+            const auto& tile = box[sequence.back()];
+            (*curr)->draw(tile);
+
+            //! check if win
+            if((*curr)->win())
+            {
+                std::cout <<    (curr == all_players.begin()?    "you"   :   "PC")
+                          <<    "win\n";
+                end = true;
+            }
+
+            //! bring out
+            std::cout << (*curr)->bring_out() << std::endl;
+        }
+
+    std::cout << "==Game end==.\n";
+
+
+}

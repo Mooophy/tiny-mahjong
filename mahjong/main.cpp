@@ -8,6 +8,8 @@ int main()
 {
     mj::Game game(2);
 
+    game.play();
+
     std::cout << "exit normally\n";
     return 0;
 }

@@ -17,16 +17,12 @@ public:
     using SequenceType  =   std::deque<std::size_t>;
     using AllPlayersType=   std::vector<std::shared_ptr<mj::Player<Vector>>>;
 
-    Game(std::size_t size):
+    Game(std::size_t sz = 2):
         box{mj::build_box<Vector>()},
         sequence{mj::generate_random_sequence<SequenceType>()},
-        all_players(size)
+        all_players(sz)
     {
-        all_players[0] = std::make_shared<mj::Human<Vector>>();
-
-        for(unsigned sz = 1; sz != size; ++sz)
-            all_players[sz] = std::make_shared<mj::Npc<Vector>>();
-
+        allocate_all_players(sz);
         init_in_hand_for_all_players();
     }
 
@@ -37,26 +33,8 @@ private:
     SequenceType sequence;
     AllPlayersType all_players;
 
-    /**
-     * @brief init_in_hand_for_all_players
-     */
-    void init_in_hand_for_all_players()
-    {
-        //! 13 tiles each player
-        for(unsigned u = 0; u != 13; ++u)
-            for(auto& player : all_players)
-            {
-                const auto& tile = box[sequence.back()];
-                player->draw(tile);
-                sequence.pop_back();
-            }
-
-        //! the 14th tile for maker
-        //! i.e.human player in this version
-        const auto& tile_for_maker = box[sequence.back()];
-        all_players[0]->draw(tile_for_maker);
-        sequence.pop_back();
-    }
+    void allocate_all_players(std::size_t size);
+    void init_in_hand_for_all_players();
 };
 
 }//namespace

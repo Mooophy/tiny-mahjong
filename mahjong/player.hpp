@@ -32,6 +32,11 @@ public:
         return mj::check_if_win(in_hand.begin(), in_hand.end());
     }
 
+    /**
+     * @brief bring_out
+     *
+     * using virtual consider()
+     */
     ValueType bring_out()
     {
         std::swap(in_hand.back(), in_hand[consider()]);
@@ -49,6 +54,11 @@ protected:
     Container in_hand;
 
 private:
+    /**
+     * @brief consider
+     *
+     * absolute virtual function
+     */
     virtual SizeType consider() const = 0;
 };
 
@@ -60,11 +70,21 @@ public:
     using Base::Player;
 
 private:
+    /**
+     * @brief consider
+     *
+     * virtual
+     */
     virtual typename Base::SizeType consider() const override
     {
         return ai();
     }
 
+    /**
+     * @brief ai
+     *
+     * to be implemented.
+     */
     typename Base::SizeType ai()const
     {
         return 3;

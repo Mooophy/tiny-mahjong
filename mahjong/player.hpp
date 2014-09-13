@@ -80,6 +80,9 @@ public:
     using SizeType  =   typename Base::SizeType;
 
 private:
+
+
+
     /**
      * @brief consider
      *

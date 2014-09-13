@@ -12,5 +12,6 @@ HEADERS += \
     win.hpp \
     tile.hpp \
     player.hpp \
-    game.h
+    game.h \
+    ai.hpp
 

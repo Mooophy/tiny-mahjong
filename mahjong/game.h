@@ -37,6 +37,8 @@ private:
 
     void allocate_all_players(std::size_t size);
     void init_in_hand_for_all_players();
+    void show_tiles_on_board();
+    void game_start_prompt();
 };
 
 }//namespace

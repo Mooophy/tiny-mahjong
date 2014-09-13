@@ -34,9 +34,14 @@ void mj::Game::allocate_all_players(std::size_t size)
 
 void mj::Game::play()
 {
+    game_start_prompt();
+
     //! check if maker won already:
     if(all_players[0]->win())
+    {
         std::cout << "Maker win!\n";
+        return;
+    }
 
     //! game start
     for(bool end{false}; end != true   &&  !sequence.empty(); sequence.pop_back())
@@ -60,18 +65,25 @@ void mj::Game::play()
             on_board.push_back((*curr)->bring_out());
         }
 
-        //! display tiles on board
-        std::cout << "on board:\n";
-        for(std::size_t count = 0; count != on_board.size(); ++count)
-        {
-            on_board[count].print();
-            std::cout << ((count + 1) % 10?   "  "    :   "\n");
-        }
-        std::cout << "\n";
+        show_tiles_on_board();
     }
 
 
     std::cout << "==Game end==.\n";
+}
 
+void mj::Game::show_tiles_on_board()
+{
+    std::cout << "piles on board:\n";
+    for(std::size_t count = 0; count != on_board.size(); ++count)
+    {
+        on_board[count].print();
+        std::cout << ((count + 1) % 10?   "  "    :   "\n");
+    }
+    std::cout << "\n";
+}
 
+inline void mj::Game::game_start_prompt()
+{
+    std::cout << "\t\t==WELCOME==\n\n";
 }

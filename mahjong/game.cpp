@@ -40,6 +40,8 @@ void mj::Game::play()
 
     //! game start
     for(bool end{false}; end != true   &&  !sequence.empty(); sequence.pop_back())
+    {
+        //! each player
         for(auto curr = all_players.begin(); curr != all_players.end(); ++curr)
         {
             //! draw
@@ -55,8 +57,19 @@ void mj::Game::play()
             }
 
             //! bring out
-            std::cout << (*curr)->bring_out() << std::endl;
+            on_board.push_back((*curr)->bring_out());
         }
+
+        //! display tiles on board
+        std::cout << "on board:\n";
+        for(std::size_t count = 0; count != on_board.size(); ++count)
+        {
+            on_board[count].print();
+            std::cout << ((count + 1) % 10?   "  "    :   "\n");
+        }
+        std::cout << "\n";
+    }
+
 
     std::cout << "==Game end==.\n";
 

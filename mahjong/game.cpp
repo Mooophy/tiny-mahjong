@@ -1,7 +1,8 @@
 #include "game.h"
+#include <algorithm>
 
 /**
- * @brief mj::Game::init_in_hand_for_all_players
+ * @brief init_in_hand_for_all_players
  */
 void mj::Game::init_in_hand_for_all_players()
 {
@@ -22,7 +23,7 @@ void mj::Game::init_in_hand_for_all_players()
 }
 
 /**
- * @brief mj::Game::allocate_all_players
+ * @brief allocate_all_players
  */
 void mj::Game::allocate_all_players(std::size_t size)
 {
@@ -32,6 +33,11 @@ void mj::Game::allocate_all_players(std::size_t size)
         all_players[sz] = std::make_shared<mj::Npc<Vector>>();
 }
 
+/**
+ * @brief play
+ *
+ *  the main process
+ */
 void mj::Game::play()
 {
     game_start_prompt();
@@ -43,38 +49,47 @@ void mj::Game::play()
         return;
     }
 
-    //! game start
+    //! process
     for(bool end{false}; end != true   &&  !sequence.empty(); sequence.pop_back())
     {
+        std::cout << "\n\n\n";
+
         //! each player
-        for(auto curr = all_players.begin(); curr != all_players.end(); ++curr)
+        std::for_each(all_players.begin(), all_players.end(),
+                      [&end,this](decltype(*all_players.begin()) player)
         {
+
             //! draw
-            const auto& tile = box[sequence.back()];
-            (*curr)->draw(tile);
+            player->draw(box[sequence.back()]);
 
             //! check if win
-            if((*curr)->win())
+            if(player->win())
             {
-                std::cout <<    (curr == all_players.begin()?    "you"   :   "PC")
+                std::cout <<    (player == *all_players.begin()?    "you"   :   "PC")
                           <<    "win\n";
                 end = true;
             }
 
-            //! bring out
-            on_board.push_back((*curr)->bring_out());
-        }
+            on_board.push_back(player->bring_out());
+        });
 
+        std::cout << "\n\n\n";
         show_tiles_on_board();
     }
 
-
-    std::cout << "==Game end==.\n";
+    game_end_prompt();
 }
 
+/**
+ * @brief show_tiles_on_board
+ */
 void mj::Game::show_tiles_on_board()
 {
-    std::cout << "piles on board:\n";
+    std::cout << "piles on board:\nlast round:  ";
+    for(auto it = on_board.end() - 1; it != on_board.end() - 1 - all_players.size(); --it)
+        std::cout << *it << "   ";
+    std::cout << "\n";
+
     for(std::size_t count = 0; count != on_board.size(); ++count)
     {
         on_board[count].print();
@@ -83,7 +98,22 @@ void mj::Game::show_tiles_on_board()
     std::cout << "\n";
 }
 
-inline void mj::Game::game_start_prompt()
+/**
+ * @brief game_start_prompt
+ */
+inline std::ostream&
+mj::Game::game_start_prompt()
 {
     std::cout << "\t\t==WELCOME==\n\n";
+    return std::cout;
+}
+
+/**
+ * @brief game_end_prompt
+ */
+inline std::ostream&
+mj::Game::game_end_prompt()
+{
+    std::cout << "\t\t==GAME OVER==\n\n";
+    return std::cout;
 }

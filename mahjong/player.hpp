@@ -125,6 +125,8 @@ private:
      */
     SizeType interact()const
     {
+        std::cout << "your piles : \n";
+
         for(unsigned u = 0; u != 14; ++u)
             std::cout << u << " : [" << Base::in_hand[u] << "]  ";
 

@@ -76,8 +76,7 @@ template<typename Container>
 class Npc : public Player<Container>
 {
 public:
-    using Base = mj::Player<Container>;
-//    using Base::Player;
+    using Base      =   mj::Player<Container>;
     using SizeType  =   typename Base::SizeType;
 
     Npc(const Container& on_board) :
@@ -97,15 +96,6 @@ private:
         return ai();
     }
 
-//    /**
-//     * @brief ai
-//     *
-//     * to be implemented.
-//     */
-//    SizeType ai()const
-//    {
-//        return 3;
-//    }
 };
 
 template<typename Container>

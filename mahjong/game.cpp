@@ -30,7 +30,7 @@ void mj::Game::allocate_all_players(std::size_t size)
     all_players[0] = std::make_shared<mj::Human<Vector>>();
 
     for(unsigned sz = 1; sz != size; ++sz)
-        all_players[sz] = std::make_shared<mj::Npc<Vector>>();
+        all_players[sz] = std::make_shared<mj::Npc<Vector>>(on_board);
 }
 
 /**

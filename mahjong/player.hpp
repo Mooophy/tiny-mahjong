@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdexcept>
 #include "win.hpp"
+#include "ai.hpp"
 
 
 namespace mj {
@@ -76,12 +77,15 @@ class Npc : public Player<Container>
 {
 public:
     using Base = mj::Player<Container>;
-    using Base::Player;
+//    using Base::Player;
     using SizeType  =   typename Base::SizeType;
 
+    Npc(const Container& on_board) :
+        Base(),ai(Base::in_hand, on_board)
+    {}
+
 private:
-
-
+    mj::Ai<Container> ai;
 
     /**
      * @brief consider
@@ -93,15 +97,15 @@ private:
         return ai();
     }
 
-    /**
-     * @brief ai
-     *
-     * to be implemented.
-     */
-    SizeType ai()const
-    {
-        return 3;
-    }
+//    /**
+//     * @brief ai
+//     *
+//     * to be implemented.
+//     */
+//    SizeType ai()const
+//    {
+//        return 3;
+//    }
 };
 
 template<typename Container>

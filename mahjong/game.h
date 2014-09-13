@@ -20,8 +20,8 @@ public:
     Game(std::size_t sz = 2):
         box{mj::build_box<Vector>()},
         sequence{mj::generate_random_sequence<SequenceType>()},
-        all_players(sz),
-        on_board{}
+        on_board{},
+        all_players(sz)
     {
         allocate_all_players(sz);
         init_in_hand_for_all_players();
@@ -32,8 +32,8 @@ public:
 private:
     Vector box;
     SequenceType sequence;
-    AllPlayersType all_players;
     Vector on_board;
+    AllPlayersType all_players;
 
     void allocate_all_players(std::size_t size);
     void init_in_hand_for_all_players();

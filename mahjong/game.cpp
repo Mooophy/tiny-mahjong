@@ -17,9 +17,9 @@ void mj::Game::init_in_hand_for_all_players()
 
     //! the 14th tile for maker
     //! i.e.human player in this version
-    const auto& tile_for_maker = box[sequence.back()];
-    all_players[0]->draw(tile_for_maker);
-    sequence.pop_back();
+//    const auto& tile_for_maker = box[sequence.back()];
+//    all_players[0]->draw(tile_for_maker);
+//    sequence.pop_back();
 }
 
 /**
@@ -85,7 +85,7 @@ void mj::Game::play()
  */
 void mj::Game::show_tiles_on_board()
 {
-    std::cout << "piles on board:\nlast round:  ";
+    std::cout << "\033[2Jpiles on board:\nlast round:  ";
     for(auto it = on_board.end() - 1; it != on_board.end() - 1 - all_players.size(); --it)
         std::cout << *it << "   ";
     std::cout << "\n";

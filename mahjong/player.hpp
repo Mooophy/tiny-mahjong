@@ -123,11 +123,18 @@ private:
     SizeType interact()const
     {
         std::cout << "your piles : \n";
+        for(const auto& tile : Base::in_hand)
+            std::cout << "[" << tile << "] ";
+        std::cout << "\n";
+
 
         for(unsigned u = 0; u != 14; ++u)
-            std::cout << u << " : [" << Base::in_hand[u] << "]  ";
+            std::cout << u << "     " << (u >= 10? ""  :   " ");
 
-        std::cout << "\nwhich to bring out? type 0 to 13\n";
+
+
+
+        std::cout << "\n\t\t\t\t\t\t\ttype 0 to 13 to discard\n";
         SizeType input;
         std::cin >> input;
 

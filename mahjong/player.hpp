@@ -127,12 +127,8 @@ private:
             std::cout << "[" << tile << "] ";
         std::cout << "\n";
 
-
         for(unsigned u = 0; u != 14; ++u)
             std::cout << u << "     " << (u >= 10? ""  :   " ");
-
-
-
 
         std::cout << "\n\t\t\t\t\t\t\ttype 0 to 13 to discard\n";
         SizeType input;
